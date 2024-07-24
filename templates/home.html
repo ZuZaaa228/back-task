@@ -3,7 +3,6 @@
 {% block content %}
     <h1>Show two menus</h1>
     <h1>{{ menu_item.name }}</h1>
-    <div>{{ menu_item.content|safe }}</div>
     <div>
         <h2>Main Menu</h2>
         {% draw_menu 'main_menu' %}
