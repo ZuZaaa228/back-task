@@ -1,0 +1,21 @@
+<ul>
+    {% for node in menu_items %}
+        <li>
+            <a href="{{ node.item.get_absolute_url }}"
+               class="{% if node.item.get_absolute_url in current_path %}active{% endif %}">{{ node.item.name }}</a>
+            {% if node.children and node.expanded %}
+                <ul>
+                    {% for child in node.children %}
+                        <li>
+                            <a href="{{ child.item.get_absolute_url }}"
+                               class="{% if child.item.get_absolute_url in current_path %}active{% endif %}">{{ child.item.name }}</a>
+                            {% if child.item.get_absolute_url in current_path and child.children %}
+                                {% include 'menu/menu.html' with menu_items=child.children %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
